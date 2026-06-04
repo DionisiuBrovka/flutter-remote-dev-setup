@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /home/dionisiu/remote_flutter/06-finish.sh)"
+    ]
+  }
+}

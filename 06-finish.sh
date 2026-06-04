@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 08-finish.sh — финальная проверка и памятка.
+# 06-finish.sh — финальная проверка и памятка.
 set -euo pipefail
 source "$(dirname "$0")/00-env.sh"
 ensure_not_root
@@ -9,9 +9,7 @@ flutter doctor || true
 echo
 
 c_info "Версии инструментов:"
-command -v gh     >/dev/null 2>&1 && gh --version | head -n1
-command -v claude >/dev/null 2>&1 && echo "claude $(claude --version 2>/dev/null || echo '?')"
-command -v adb    >/dev/null 2>&1 && adb --version | head -n1
+command -v adb >/dev/null 2>&1 && adb --version | head -n1
 echo
 
 c_ok "Всё настроено."

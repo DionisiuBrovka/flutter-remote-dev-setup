@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A set of numbered shell scripts that configure a headless Ubuntu Server 24.04 for remote Flutter/Android development. The scripts set up Flutter SDK, Android SDK, USB phone access, optional proxy, GitHub CLI, and Claude Code itself.
+A set of numbered shell scripts that configure a headless Ubuntu Server 24.04 for remote Flutter/Android development. The scripts set up Flutter SDK, Android SDK, USB phone access, and an optional proxy.
 
 ## Running the scripts
 
@@ -18,9 +18,7 @@ All scripts must be run **as a regular user** (not root). `sudo` is invoked inte
 # Re-login via SSH here (plugdev group won't apply until re-login)
 ./05-proxy.sh on     # optional: set proxy for shell/apt/git/npm
 ./05-proxy.sh off    # disable proxy
-./06-github.sh       # GitHub CLI (gh) + git config + gh auth login
-./07-claude-code.sh  # Claude Code via native installer (~/.local/bin/claude)
-./08-finish.sh       # flutter doctor + cheat sheet
+./06-finish.sh       # flutter doctor + cheat sheet
 ```
 
 After the full run, verify everything with `flutter doctor`.
@@ -28,7 +26,7 @@ After the full run, verify everything with `flutter doctor`.
 ## Architecture
 
 `00-env.sh` is a **library, not an entrypoint** — it is `source`d by every other script and never run directly. It defines:
-- Configurable variables: `GIT_USER_NAME`, `GIT_USER_EMAIL`, `PROXY_URL`, SDK versions and paths
+- Configurable variables: `PROXY_URL`, SDK versions and paths
 - Logging helpers: `c_info`, `c_ok`, `c_warn`, `c_err`
 - `ensure_not_root` — exits if running as root
 - `bashrc_set_block` / `bashrc_del_block` — idempotent tagged blocks in `~/.bashrc`

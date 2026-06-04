@@ -23,7 +23,7 @@ enable_proxy() {
   fi
   c_info "Включаю прокси: ${PROXY_URL}"
 
-  # 1) shell-окружение (для curl, gh, claude и пр.)
+  # 1) shell-окружение (для curl и пр.)
   bashrc_set_block "proxy" "export http_proxy=\"${PROXY_URL}\"
 export https_proxy=\"${PROXY_URL}\"
 export HTTP_PROXY=\"${PROXY_URL}\"
