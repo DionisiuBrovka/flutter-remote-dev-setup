@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
-# 06-finish.sh — финальная проверка и памятка.
+# 06-finish.sh — final verification and usage cheat sheet.
 set -euo pipefail
 source "$(dirname "$0")/00-env.sh"
 ensure_not_root
 
-c_info "flutter doctor:"
+c_info "Running flutter doctor..."
 flutter doctor || true
 echo
 
-c_info "Версии инструментов:"
+c_info "Tool versions:"
 command -v adb >/dev/null 2>&1 && adb --version | head -n1
 echo
 
-c_ok "Всё настроено."
+c_ok "Setup complete."
 echo
-echo "─────────────────── ШПАРГАЛКА ───────────────────"
-echo "VS Code (на ноуте): Remote-SSH -> этот сервер -> расширения Flutter+Dart"
-echo "  ставишь 'в SSH' -> открываешь проект -> F5."
+echo "───────────────────── CHEAT SHEET ─────────────────────"
+echo "VS Code (on laptop): Remote-SSH -> this server -> install Flutter+Dart"
+echo "  extensions 'in SSH' -> open project -> F5 to run/debug."
 echo
-echo "Экран телефона (scrcpy на НОУТЕ):"
-echo "  Скопируй scrcpy-tunnel.sh на ноут, затем одной командой:"
-echo "  ./scrcpy-tunnel.sh $USER@<ip_сервера>"
+echo "Phone screen mirror (scrcpy on LAPTOP):"
+echo "  Copy scrcpy-tunnel.sh to your laptop, then run:"
+echo "  ./scrcpy-tunnel.sh $USER@<server-ip>"
 echo
-echo "Если телефон не виден: убедись, что после шага 04 ты ПЕРЕЛОГИНИЛСЯ,"
-echo "и что подтвердил запрос отладки на экране телефона (adb devices)."
-echo "──────────────────────────────────────────────────"
+echo "If the phone is not detected: make sure you re-logged in after step 04,"
+echo "and confirmed the USB debugging prompt on the phone screen (adb devices)."
+echo "────────────────────────────────────────────────────────"

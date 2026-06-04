@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# scrcpy-tunnel.sh — экран телефона через удалённый сервер.
-# Кладётся на НОУТ. Использование: ./scrcpy-tunnel.sh user@<ip_сервера>
+# scrcpy-tunnel.sh — mirror phone screen via a remote dev server.
+# Place this on your LAPTOP. Usage: ./scrcpy-tunnel.sh user@<server-ip>
 set -euo pipefail
 
-TARGET="${1:?Укажи адрес сервера: $0 user@<ip>}"
+TARGET="${1:?Specify the server address: $0 user@<ip>}"
 
 if lsof -ti:5038 >/dev/null 2>&1; then
-    echo "Туннель уже запущен (порт 5038 занят), подключаемся..."
+    echo "Tunnel already running (port 5038 in use), connecting..."
 else
     ssh -fCN \
         -o ExitOnForwardFailure=yes \
@@ -14,7 +14,7 @@ else
         -L5038:localhost:5037 \
         -L27183:localhost:27183 \
         "$TARGET"
-    echo "Туннель запущен."
+    echo "Tunnel established."
 fi
 
 cleanup() {
